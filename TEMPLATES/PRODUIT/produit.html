@@ -1,0 +1,93 @@
+{% extends 'index.html' %}
+
+{% block contenu %}
+<br>
+<div class="row">
+    <div class="col-md-5">
+
+        <div class="card card-body">
+            <a class="btn btn-primary btn-sm btn-block" href="{% url 'creation' %}">Créer Un Client</a>
+            <table class="table table-sm">
+                <tr>
+                    <th>ENTREPRISES</th>
+                    <th>TELEPHONE</th>
+                    <th>DETAILS</th>
+                    <th>UPDATE</th>
+                    <th>DELETE</th>
+                </tr>
+                {% for i in cli %}
+                <tr>
+                    <th>{{ i.nom }}</th>
+                    <th>{{ i.telephone }}</th>
+                    <th><a class="btn btn-success btn-sm" href="{% url 'client' i.id %}">DETAILS</a></th>
+                    <th><a class="btn btn-primary btn-sm" href="{% url 'modifier' i.id %}">UPDATE</a></th>
+                    <th><a class="btn btn-danger btn-sm" href="{% url 'enleve' i.id %}">DELETE</a></th>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <!-- Pagination pour les clients -->
+            <div class="pagination-container">
+                {% if cli.has_previous %}
+                    <a href="?page_cli=1" style="font-size: 30px; font-weight: bold;">&laquo;</a>
+                    <a href="?page_cli={{ cli.previous_page_number }}" style="font-size: 30px; font-weight: bold;">&lsaquo;</a>
+                {% endif %}
+
+                <span class="current-page" style="font-size: 30px; font-weight: bold;" >{{ cli.number }}</span>
+
+                {% if cli.has_next %}
+                    <a href="?page_cli={{ cli.next_page_number }}" style="font-size: 30px; font-weight: bold;"> &rsaquo;</a>
+                    <a href="?page_cli={{ cli.paginator.num_pages }}" style="font-size: 30px; font-weight: bold;"> &raquo;</a>
+                {% endif %}
+            </div>
+            <!-- Fin Pagination pour les clients -->
+        </div>
+    </div>
+
+	<div class="col-md-7">
+
+
+    <div class="card card-body">
+        <a class="btn btn-primary btn-sm btn-block" href="{% url 'ajouter' %}">Ajouter une Commande</a>
+        <table class="table table-sm">
+            <tr>
+                <th style="text-align: center">CLIENT</th>
+                <th style="text-align: center">PRODUIT</th>
+                <th style="text-align: center">QUANTITE</th>
+                <th style="text-align: center">DATE DE LA COMMANDE</th>
+                <th>UPDATE</th>
+                <th>DELETE</th>
+            </tr>
+
+            {% for j in com %}
+            <tr>
+                <th style="text-align: center">{{ j.client }}</th>
+                <th style="text-align: center">{{ j.produit }}</th>
+                <th style="text-align: center">{{ j.qty }}</th>
+                <th style="text-align: center">{{ j.date_creation }}</th>
+                <th style="text-align: center">{{ j.status }}</th>
+                <th><a class="btn btn-primary btn-sm" href="{% url 'update' j.id %}">UPDATE</a></th>
+                <th><a class="btn btn-danger btn-sm" href="{% url 'delete' j.id %}">DELETE</a></th>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <!-- Pagination pour les commandes -->
+        <div class="pagination-container">
+            {% if com.has_previous %}
+                <a href="?page_com=1" style="font-size: 30px; font-weight: bold;">&laquo;</a>
+                <a href="?page_com={{ com.previous_page_number }}" style="font-size: 30px; font-weight: bold;">&lsaquo;</a>
+            {% endif %}
+
+            <span class="current-page" style="font-size: 30px; font-weight: bold;">{{ com.number }}</span>
+
+            {% if com.has_next %}
+                <a href="?page_com={{ com.next_page_number }}" style="font-size: 30px; font-weight: bold;"> &rsaquo;</a>
+                <a href="?page_com={{ com.paginator.num_pages }}" style="font-size: 30px; font-weight: bold;"> &raquo;</a>
+            {% endif %}
+        </div>
+        <!-- Fin pagination pour les commandes -->
+    </div>
+</div>
+</div>
+{% endblock %}

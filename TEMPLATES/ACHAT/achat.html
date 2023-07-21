@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+{% block contenu %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-7">
+      <hr>
+      <div class="card card-body">
+        <table class="table table-sm">
+          <tr>
+            <th style="text-align: center">CLIENT</th>
+            <th style="text-align: center">PRODUIT</th>
+            <th style="text-align: center">QUANTITE</th>
+            <th style="text-align: center">DATE DE LA COMMMANDE</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+          </tr>
+
+          <tr>
+            <th style="text-align: center">a</th>
+            <th style="text-align: center">b</th>
+            <th style="text-align: center">c</th>
+            <th style="text-align: center">d</th>
+            <th><a class="btn btn-primary btn-sm" href="">UPDATE</a></th>
+            <th><a class="btn btn-danger btn-sm" href="">DELETE</a></th>
+          </tr>
+
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

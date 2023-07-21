@@ -1,0 +1,2 @@
+.pouvoir générer des factures avec des commandes différentes pris en compte par le stock
+.supprimer les apps client et commande et les remplacer par l'app vente

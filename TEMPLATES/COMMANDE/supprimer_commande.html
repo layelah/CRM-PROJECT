@@ -1,0 +1,20 @@
+{%extends 'index.html'%}
+
+
+{% block contenu %}
+
+<div class="row">
+    <div class="col-md-2">
+        <div class="card card-body">
+
+            <form action="{% url 'delete' items.id %}" method="POST">
+                {% csrf_token %}
+                <a class="btn btn-sm btn-primary" href="{% url 'accueil' %}">Annuler</a>
+                <input class="btn btn-sm btn-danger" type="submit" value="Confirmer">
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

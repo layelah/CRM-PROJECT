@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+{% block contenu %}
+<div class="container">
+  <div class="row justify-content-center"> <!-- Ajout de la classe 'justify-content-center' pour centrer horizontalement -->
+    <div class="col-md-7">
+      <hr>
+      <div class="card card-body">
+        <a class="btn btn-primary btn-sm btn-block" href="{% url 'ajouter' %}">Ajouter une Commande</a>
+        <table class="table table-sm">
+          <tr>
+            <th style="text-align: center">CLIENT</th>
+            <th style="text-align: center">PRODUIT</th>
+            <th style="text-align: center">QUANTITE</th>
+            <th style="text-align: center">DATE DE LA COMMMANDE</th>
+            <th>UPDATE</th>
+            <th>DELETE</th>
+          </tr>
+          {% for commande in commandes %}
+          {% if commande.status == 'livraison en cours' %}
+          <tr>
+            <th style="text-align: center">{{ commande.client }}</th>
+            <th style="text-align: center">{{ commande.produit }}</th>
+            <th style="text-align: center">{{ commande.qty }}</th>
+            <th style="text-align: center">{{ commande.date_creation|date:"d/m/Y" }}</th>
+            <th><a class="btn btn-primary btn-sm" href="{% url 'update' commande.id %}">UPDATE</a></th>
+            <th><a class="btn btn-danger btn-sm" href="{% url 'delete' commande.id %}">DELETE</a></th>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,82 @@
+{%extends 'index.html'%}
+
+
+
+{% block contenu %}
+
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<h5 style="text-align: center">CLIENT</h5>
+			<hr>
+			<a class="btn btn-outline-info  btn-sm btn-block" href="{% url 'modifier' clix.id %}">Modifier le Client</a>
+			<a class="btn btn-outline-danger  btn-sm btn-block" href="{% url 'enleve' clix.id %}">Supprimer le Client</a>
+
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5 style="text-align: center">INFORMATIONS</h5>
+			<hr>
+			<p>NOM: {{clix.nom}}</p>
+			<p>TELEPHONE: {{clix.telephone}}</p> 
+		</div>
+	</div>
+
+	<div class="col-md">
+		<div class="card card-body">
+			<h5 style="text-align: center">TOTAL DES COMMANDES</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{commande_total}}</h1>
+		</div>
+	</div>
+</div>
+
+
+<br>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+			<form method="get">
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+			{{mon_filtre.form}}
+		  </form>
+		</div>
+	</div>
+
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>PRODUIT</th>
+					<th>DATE DE LA COMMANDE</th>
+					<th>STATUS</th>
+					<th>UPDATE</th>
+					<th>DELETE</th>
+				</tr>
+
+				{% for j in ccoommaa %}
+				<tr>
+					<th>{{j.produit}}</th>
+					<th>{{j.date_creation}}</th>
+					<th>{{j.status}}</th>
+					<th><a class="btn btn-primary  btn-sm" href="{% url 'update' j.id%}">UPDATE</a></th>
+					<th><a class="btn btn-danger  btn-sm" href="{% url 'delete' j.id%}">DELETE</a></th>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
